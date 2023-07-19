@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 
 // MongoDB connection URI
-const mongoURI = 'mongodb://admin:VRuAd2Nvmp4ELHh5@handler-svc:27017';
+const mongoURI = 'mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@handler-svc:27017';
 
 // MongoDB connection options
 const mongoOptions = {
@@ -107,5 +107,5 @@ app.post('/shorten', async (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port} also the username and password is ${process.env.DB_USER} , ${process.env.DB_USER}`);
+  console.log(`Server is running on http://localhost:${port} also the username and password is ${process.env.MONGO_INITDB_ROOT_USERNAME} , ${process.env.MONGO_INITDB_ROOT_PASSWORD}`);
 });
