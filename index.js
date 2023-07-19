@@ -107,5 +107,5 @@ app.post('/shorten', async (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port} also the username and password is ${process.env.DB_USER} , ${process.env.DB_USER}`);
 });
