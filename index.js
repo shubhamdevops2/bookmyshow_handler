@@ -1,7 +1,7 @@
 const express = require('express');
 const { nanoid } = require('nanoid');
 const mongoose = require('mongoose');
-//const cors = require('cors');
+const cors = require('cors');
 
 
 // MongoDB connection URI
@@ -36,14 +36,14 @@ const urlSchema = new mongoose.Schema({
 const URL = mongoose.model('test', urlSchema);
 
 
-//var cors = require('cors')
+const cors = require('cors')
 
 const app = express();
 const port = 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.use(cors());
+app.use(cors());
 
 
 app.post('/shorten', async (req, res) => {
