@@ -4,8 +4,14 @@ const mongoose = require('mongoose');
 
 
 // MongoDB connection URI
-const mongoURI = 'mongodb://${process.env.DB_USER}:${process.env.DB_PW}@handler-svc:27017/admin';
-
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PW}@handler-svc:27017/admin`, 
+    {useNewUrlParser: true})  
+    .then(() => {
+      console.log('Connected to MongoDB cluster');
+    })
+    .catch((error) => {
+      console.error('Error connecting to MongoDB cluster:', error);
+    });
 // MongoDB connection options
 const mongoOptions = {
   useNewUrlParser: true,
@@ -29,13 +35,13 @@ const urlSchema = new mongoose.Schema({
 const URL = mongoose.model('test', urlSchema);
 
 // Connect to MongoDB cluster
-mongoose.connect(mongoURI, mongoOptions)
-  .then(() => {
-    console.log('Connected to MongoDB cluster');
-  })
-  .catch((error) => {
-    console.error('Error connecting to MongoDB cluster:', error);
-  });
+// mongoose.connect(mongoURI, mongoOptions)
+//   .then(() => {
+//     console.log('Connected to MongoDB cluster');
+//   })
+//   .catch((error) => {
+//     console.error('Error connecting to MongoDB cluster:', error);
+//   });
 
 var cors = require('cors')
 
