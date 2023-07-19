@@ -105,6 +105,16 @@ app.post('/shorten', async (req, res) => {
       res.status(500).json({ error: 'Failed to retrieve URL' });
     }
   });
+
+  app.get('/', async (req, res) => {
+    try {
+      const response = await axios.get('urlshorten.svc:3000'); // Replace with the appropriate URL of your React project
+      res.send(response.data);
+    } catch (error) {
+      console.error('Error proxying request:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
   
   
   function generateShortURL() {
