@@ -1,6 +1,7 @@
 const express = require('express');
 const { nanoid } = require('nanoid');
 const mongoose = require('mongoose');
+//const cors = require('cors');
 
 
 // MongoDB connection URI
@@ -31,26 +32,18 @@ const urlSchema = new mongoose.Schema({
   },
 });
 
-// Create the URL model
+
 const URL = mongoose.model('test', urlSchema);
 
-// Connect to MongoDB cluster
-// mongoose.connect(mongoURI, mongoOptions)
-//   .then(() => {
-//     console.log('Connected to MongoDB cluster');
-//   })
-//   .catch((error) => {
-//     console.error('Error connecting to MongoDB cluster:', error);
-//   });
 
-var cors = require('cors')
+//var cors = require('cors')
 
 const app = express();
 const port = 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 
 
 app.post('/shorten', async (req, res) => {
