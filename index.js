@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 
 // MongoDB connection URI
-const mongoURI = 'mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@handler-svc:27017';
+const mongoURI = 'mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@handler-svc:27017/test';
 
 // MongoDB connection options
 const mongoOptions = {
