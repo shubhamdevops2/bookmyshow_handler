@@ -35,9 +35,6 @@ const urlSchema = new mongoose.Schema({
 
 const URL = mongoose.model('test', urlSchema);
 
-
-const cors = require('cors')
-
 const app = express();
 const port = 3001;
 
