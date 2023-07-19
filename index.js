@@ -53,7 +53,7 @@ app.use(express.json());
 app.use(cors());
 
 
-app.post('/shorten', async (req, res) => {
+app.post('/api/shorten', async (req, res) => {
     const { url } = req.body;
     const shortenedURL = generateShortURL();
     try {
@@ -68,7 +68,7 @@ app.post('/shorten', async (req, res) => {
   });
 
 
-  app.get('/:shortURL', async (req, res) => {
+  app.get('/api/:shortURL', async (req, res) => {
     const { shortURL } = req.params;
   
     try {
@@ -106,16 +106,6 @@ app.post('/shorten', async (req, res) => {
     }
   });
 
-  app.get('/', async (req, res) => {
-    try {
-      const response = await axios.get('urlshorten.svc:3000'); // Replace with the appropriate URL of your React project
-      res.send(response.data);
-    } catch (error) {
-      console.error('Error proxying request:', error);
-      res.status(500).send('Internal Server Error');
-    }
-  });
-  
   
   function generateShortURL() {
     return nanoid(8);
