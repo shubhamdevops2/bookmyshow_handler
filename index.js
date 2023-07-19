@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 
 // MongoDB connection URI
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PW}@handler-svc:27017/admin`, 
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PW}@mongodb-svc:27017/admin`, 
     {useNewUrlParser: true})  
     .then(() => {
       console.log('Connected to MongoDB cluster');
