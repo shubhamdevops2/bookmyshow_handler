@@ -53,7 +53,7 @@ app.use(express.json());
 app.use(cors());
 
 
-app.post('/api/shorten', async (req, res) => {
+app.post('/shorten', async (req, res) => {
     const { url } = req.body;
     const shortenedURL = generateShortURL();
     try {
@@ -68,7 +68,7 @@ app.post('/api/shorten', async (req, res) => {
   });
 
 
-  app.get('/api/:shortURL', async (req, res) => {
+  app.get('/shorten/:shortURL', async (req, res) => {
     const { shortURL } = req.params;
   
     try {
