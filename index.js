@@ -1,10 +1,11 @@
+// Importing the libraries
 const express = require('express');
 const { nanoid } = require('nanoid');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
 
-// MongoDB connection URI
+// MongoDB connection
 mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PW}@mongodb-svc:27017/admin`, 
     {useNewUrlParser: true})  
     .then(() => {
@@ -13,13 +14,9 @@ mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PW}@mongodb-
     .catch((error) => {
       console.error('Error connecting to MongoDB cluster:', error);
     });
-// MongoDB connection options
-const mongoOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
 
-// Define the URL schema
+
+// Define the URL schema for variables
 const urlSchema = new mongoose.Schema({
   originalURL: {
     type: String,
@@ -33,8 +30,10 @@ const urlSchema = new mongoose.Schema({
 });
 
 
+// Define the MongoDB model
 const URL = mongoose.model('test', urlSchema);
 
+// Configuring the express server
 const app = express();
 const port = 3001;
 
@@ -43,6 +42,7 @@ app.use(express.json());
 app.use(cors());
 
 
+// Post API request for /shorten path
 app.post('/shorten', async (req, res) => {
     const { url } = req.body;
     const shortenedURL = generateShortURL();
@@ -58,6 +58,7 @@ app.post('/shorten', async (req, res) => {
   });
 
 
+  // Post GET request for /shorten/:shortURL path, example /shorten/dsfsafsaf
   app.get('/shorten/:shortURL', async (req, res) => {
     const { shortURL } = req.params;
   
@@ -77,6 +78,8 @@ app.post('/shorten', async (req, res) => {
     }
   });
 
+
+  // Post GET request for /reverse/:shortURL path, example /shorten/dsfsafsaf
   app.get('/reverse/:shortURL', async (req, res) => {
     const { shortURL } = req.params;
   
@@ -97,6 +100,7 @@ app.post('/shorten', async (req, res) => {
   });
 
   
+  // Generate the HASH key from nanoid import function
   function generateShortURL() {
     return nanoid(8);
   }
