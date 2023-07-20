@@ -58,27 +58,6 @@ app.post('/shorten', async (req, res) => {
   });
 
 
-  // Post GET request for /shorten/:shortURL path, example /shorten/dsfsafsaf
-  app.get('/shorten/:shortURL', async (req, res) => {
-    const { shortURL } = req.params;
-  
-    try {
-      // Retrieve the original URL from the database
-      const url = await URL.findOne({ shortenedURL: shortURL });
-  
-      if (!url) {
-        res.status(404).send('Shortened URL not found');
-        return;
-      }
-  
-      res.redirect(url.originalURL);
-    } catch (error) {
-      console.error('Error retrieving URL from the database:', error);
-      res.status(500).json({ error: 'Failed to retrieve URL' });
-    }
-  });
-
-
   // Post GET request for /reverse/:shortURL path, example /shorten/dsfsafsaf
   app.get('/reverse/:shortURL', async (req, res) => {
     const { shortURL } = req.params;
